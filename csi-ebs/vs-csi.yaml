@@ -1,0 +1,9 @@
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: imported-aws-snapshot
+  namespace: default
+spec:
+  volumeSnapshotClassName: ebs-csi-aws
+  source:
+    volumeSnapshotContentName: imported-aws-snapshot-content
