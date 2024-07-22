@@ -5,7 +5,7 @@ metadata:
 spec:
   volumeSnapshotRef:
     kind: VolumeSnapshot
-    name: imported-aws-snapshot
+    name: imported-rabbitmq-snapshot
     namespace: tappit-v2
   source:
     snapshotHandle: snap-03e4726f7284872b0 # <-- snapshot to import
