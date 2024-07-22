@@ -1,11 +1,11 @@
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotContent
 metadata:
-  name: imported-rabbitmq-snapshot-content
+  name: imported-rabbitmq-snapshot-content-2
 spec:
   volumeSnapshotRef:
     kind: VolumeSnapshot
-    name: imported-rabbitmq-snapshot
+    name: imported-rabbitmq-snapshot-2
     namespace: tappit-v2
   source:
     snapshotHandle: snap-03e4726f7284872b0 # <-- snapshot to import

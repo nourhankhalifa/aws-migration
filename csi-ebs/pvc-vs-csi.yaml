@@ -11,6 +11,6 @@ spec:
     requests:
       storage: 8Gi
   dataSource:
-    name: imported-rabbitmq-snapshot
+    name: imported-rabbitmq-snapshot-2
     kind: VolumeSnapshot
     apiGroup: snapshot.storage.k8s.io
