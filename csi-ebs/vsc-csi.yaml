@@ -6,7 +6,7 @@ spec:
   volumeSnapshotRef:
     kind: VolumeSnapshot
     name: imported-aws-snapshot
-    namespace: default
+    namespace: tappit-v2
   source:
     snapshotHandle: snap-03e4726f7284872b0 # <-- snapshot to import
   driver: ebs.csi.aws.com
