@@ -9,7 +9,7 @@ spec:
   storageClassName: gp3
   resources:
     requests:
-      storage: 1Gi
+      storage: 8Gi
   dataSource:
     name: imported-rabbitmq-snapshot
     kind: VolumeSnapshot
