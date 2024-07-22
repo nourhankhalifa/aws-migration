@@ -1,7 +1,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: imported-aws-snapshot-pvc
+  name: data-rabbitmq-0
+  namespace: tappit-v2
 spec:
   accessModes:
   - ReadWriteOnce
@@ -10,6 +11,6 @@ spec:
     requests:
       storage: 1Gi
   dataSource:
-    name: imported-aws-snapshot
+    name: imported-rabbitmq-snapshot
     kind: VolumeSnapshot
     apiGroup: snapshot.storage.k8s.io

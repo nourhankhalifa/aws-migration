@@ -1,7 +1,7 @@
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotContent
 metadata:
-  name: imported-aws-snapshot-content
+  name: imported-rabbitmq-snapshot-content
 spec:
   volumeSnapshotRef:
     kind: VolumeSnapshot
