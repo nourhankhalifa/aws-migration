@@ -1,0 +1,14 @@
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotContent
+metadata:
+  name: imported-aws-snapshot-content
+spec:
+  volumeSnapshotRef:
+    kind: VolumeSnapshot
+    name: imported-aws-snapshot
+    namespace: default
+  source:
+    snapshotHandle: snap-03e4726f7284872b0 # <-- snapshot to import
+  driver: ebs.csi.aws.com
+  deletionPolicy: Delete
+  volumeSnapshotClassName: ebs-csi-aws
