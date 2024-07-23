@@ -82,3 +82,71 @@ spec:
     name: imported-redis-2-snapshot
     kind: VolumeSnapshot
     apiGroup: snapshot.storage.k8s.io
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: elasticsearch-master-elasticsearch-master-0
+  namespace: platform
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: gp3
+  resources:
+    requests:
+      storage: 40Gi
+  dataSource:
+    name: imported-elasticsearch-master-0-snapshot
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: elasticsearch-master-elasticsearch-master-1
+  namespace: platform
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: gp3
+  resources:
+    requests:
+      storage: 40Gi
+  dataSource:
+    name: imported-elasticsearch-master-1-snapshot
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-alertmanager
+  namespace: platform
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: gp3
+  resources:
+    requests:
+      storage: 2Gi
+  dataSource:
+    name: imported-prometheus-alertmanager-snapshot
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-server
+  namespace: platform
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: gp3
+  resources:
+    requests:
+      storage: 8Gi
+  dataSource:
+    name: imported-prometheus-server-snapshot
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io

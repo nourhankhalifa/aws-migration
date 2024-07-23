@@ -47,3 +47,43 @@ spec:
   volumeSnapshotClassName: ebs-csi-aws
   source:
     volumeSnapshotContentName: imported-redis-2-snapshot-content
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: imported-elasticsearch-master-0-snapshot
+  namespace: platform
+spec:
+  volumeSnapshotClassName: ebs-csi-aws
+  source:
+    volumeSnapshotContentName: imported-elasticsearch-master-0-snapshot-content
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: imported-elasticsearch-master-1-snapshot
+  namespace: platform
+spec:
+  volumeSnapshotClassName: ebs-csi-aws
+  source:
+    volumeSnapshotContentName: imported-elasticsearch-master-1-snapshot-content
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: imported-prometheus-alertmanager-snapshot
+  namespace: platform
+spec:
+  volumeSnapshotClassName: ebs-csi-aws
+  source:
+    volumeSnapshotContentName: imported-prometheus-alertmanager-snapshot-content
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: imported-prometheus-server-snapshot
+  namespace: platform
+spec:
+  volumeSnapshotClassName: ebs-csi-aws
+  source:
+    volumeSnapshotContentName: imported-prometheus-server-snapshot-content

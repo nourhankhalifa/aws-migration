@@ -72,3 +72,63 @@ spec:
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotContent
+metadata:
+  name: imported-elasticsearch-master-0-snapshot-content
+spec:
+  volumeSnapshotRef:
+    kind: VolumeSnapshot
+    name: imported-elasticsearch-master-0-snapshot
+    namespace: platform
+  source:
+    snapshotHandle: snap-05b02ea272261cd6f # <-- snapshot to import
+  driver: ebs.csi.aws.com
+  deletionPolicy: Delete
+  volumeSnapshotClassName: ebs-csi-aws
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotContent
+metadata:
+  name: imported-elasticsearch-master-1-snapshot-content
+spec:
+  volumeSnapshotRef:
+    kind: VolumeSnapshot
+    name: imported-elasticsearch-master-1-snapshot
+    namespace: platform
+  source:
+    snapshotHandle: snap-005e52d2f04b58592 # <-- snapshot to import
+  driver: ebs.csi.aws.com
+  deletionPolicy: Delete
+  volumeSnapshotClassName: ebs-csi-aws
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotContent
+metadata:
+  name: imported-prometheus-alertmanager-snapshot-content
+spec:
+  volumeSnapshotRef:
+    kind: VolumeSnapshot
+    name: imported-prometheus-alertmanager-snapshot
+    namespace: platform
+  source:
+    snapshotHandle: snap-0fc386677b8472f24 # <-- snapshot to import
+  driver: ebs.csi.aws.com
+  deletionPolicy: Delete
+  volumeSnapshotClassName: ebs-csi-aws
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotContent
+metadata:
+  name: imported-prometheus-server-snapshot-content
+spec:
+  volumeSnapshotRef:
+    kind: VolumeSnapshot
+    name: imported-prometheus-server-snapshot
+    namespace: platform
+  source:
+    snapshotHandle: snap-059f291607b49453c # <-- snapshot to import
+  driver: ebs.csi.aws.com
+  deletionPolicy: Delete
+  volumeSnapshotClassName: ebs-csi-aws
