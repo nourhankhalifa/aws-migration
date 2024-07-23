@@ -7,3 +7,43 @@ spec:
   volumeSnapshotClassName: ebs-csi-aws
   source:
     volumeSnapshotContentName: imported-rabbitmq-snapshot-content-2
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: imported-redis-master-snapshot
+  namespace: tappit-v2
+spec:
+  volumeSnapshotClassName: ebs-csi-aws
+  source:
+    volumeSnapshotContentName: imported-redis-master-snapshot-content
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: imported-redis-0-snapshot
+  namespace: tappit-v2
+spec:
+  volumeSnapshotClassName: ebs-csi-aws
+  source:
+    volumeSnapshotContentName: imported-redis-0-snapshot-content
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: imported-redis-1-snapshot
+  namespace: tappit-v2
+spec:
+  volumeSnapshotClassName: ebs-csi-aws
+  source:
+    volumeSnapshotContentName: imported-redis-1-snapshot-content
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: imported-redis-2-snapshot
+  namespace: tappit-v2
+spec:
+  volumeSnapshotClassName: ebs-csi-aws
+  source:
+    volumeSnapshotContentName: imported-redis-2-snapshot-content

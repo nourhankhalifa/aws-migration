@@ -12,3 +12,63 @@ spec:
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotContent
+metadata:
+  name: imported-redis-master-snapshot-content
+spec:
+  volumeSnapshotRef:
+    kind: VolumeSnapshot
+    name: imported-redis-master-snapshot
+    namespace: tappit-v2
+  source:
+    snapshotHandle: snap-05f3dd034ad13557e # <-- snapshot to import
+  driver: ebs.csi.aws.com
+  deletionPolicy: Delete
+  volumeSnapshotClassName: ebs-csi-aws
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotContent
+metadata:
+  name: imported-redis-0-snapshot-content
+spec:
+  volumeSnapshotRef:
+    kind: VolumeSnapshot
+    name: imported-redis-0-snapshot
+    namespace: tappit-v2
+  source:
+    snapshotHandle: snap-0a03092f7e2d4df38 # <-- snapshot to import
+  driver: ebs.csi.aws.com
+  deletionPolicy: Delete
+  volumeSnapshotClassName: ebs-csi-aws
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotContent
+metadata:
+  name: imported-redis-1-snapshot-content
+spec:
+  volumeSnapshotRef:
+    kind: VolumeSnapshot
+    name: imported-redis-1-snapshot
+    namespace: tappit-v2
+  source:
+    snapshotHandle: snap-0ee5f1c6caeeb1183 # <-- snapshot to import
+  driver: ebs.csi.aws.com
+  deletionPolicy: Delete
+  volumeSnapshotClassName: ebs-csi-aws
+---
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotContent
+metadata:
+  name: imported-redis-2-snapshot-content
+spec:
+  volumeSnapshotRef:
+    kind: VolumeSnapshot
+    name: imported-redis-2-snapshot
+    namespace: tappit-v2
+  source:
+    snapshotHandle: snap-0d1783b5b4a461cba # <-- snapshot to import
+  driver: ebs.csi.aws.com
+  deletionPolicy: Delete
+  volumeSnapshotClassName: ebs-csi-aws

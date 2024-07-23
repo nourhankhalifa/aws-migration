@@ -14,3 +14,71 @@ spec:
     name: imported-rabbitmq-snapshot-2
     kind: VolumeSnapshot
     apiGroup: snapshot.storage.k8s.io
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-data-redis-master-0
+  namespace: tappit-v2
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: gp3
+  resources:
+    requests:
+      storage: 8Gi
+  dataSource:
+    name: imported-redis-master-snapshot
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-data-redis-replicas-0
+  namespace: tappit-v2
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: gp3
+  resources:
+    requests:
+      storage: 8Gi
+  dataSource:
+    name: imported-redis-0-snapshot
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-data-redis-replicas-1
+  namespace: tappit-v2
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: gp3
+  resources:
+    requests:
+      storage: 8Gi
+  dataSource:
+    name: imported-redis-1-snapshot
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-data-redis-replicas-2
+  namespace: tappit-v2
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: gp3
+  resources:
+    requests:
+      storage: 8Gi
+  dataSource:
+    name: imported-redis-2-snapshot
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
