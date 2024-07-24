@@ -8,7 +8,7 @@ spec:
     name: imported-rabbitmq-snapshot-2
     namespace: tappit-v2
   source:
-    snapshotHandle: snap-03e4726f7284872b0 # <-- snapshot to import
+    snapshotHandle: snap-083f357fe3a04c802 # <-- snapshot to import
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
@@ -23,7 +23,7 @@ spec:
     name: imported-redis-master-snapshot
     namespace: tappit-v2
   source:
-    snapshotHandle: snap-05f3dd034ad13557e # <-- snapshot to import
+    snapshotHandle: snap-0fd99e3f9b40db219 # <-- snapshot to import
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
@@ -38,7 +38,7 @@ spec:
     name: imported-redis-0-snapshot
     namespace: tappit-v2
   source:
-    snapshotHandle: snap-0a03092f7e2d4df38 # <-- snapshot to import
+    snapshotHandle: snap-05ffcbda4f3f367c8 # <-- snapshot to import
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
@@ -53,7 +53,7 @@ spec:
     name: imported-redis-1-snapshot
     namespace: tappit-v2
   source:
-    snapshotHandle: snap-0ee5f1c6caeeb1183 # <-- snapshot to import
+    snapshotHandle: snap-05bc53c05f721fd42 # <-- snapshot to import
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
@@ -68,7 +68,7 @@ spec:
     name: imported-redis-2-snapshot
     namespace: tappit-v2
   source:
-    snapshotHandle: snap-0d1783b5b4a461cba # <-- snapshot to import
+    snapshotHandle: snap-03b76beb7bbed5830 # <-- snapshot to import
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
@@ -83,7 +83,7 @@ spec:
     name: imported-elasticsearch-master-0-snapshot
     namespace: platform
   source:
-    snapshotHandle: snap-05b02ea272261cd6f # <-- snapshot to import
+    snapshotHandle: snap-02c5f8eb3aaf1b118 # <-- snapshot to import
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
@@ -98,7 +98,7 @@ spec:
     name: imported-elasticsearch-master-1-snapshot
     namespace: platform
   source:
-    snapshotHandle: snap-005e52d2f04b58592 # <-- snapshot to import
+    snapshotHandle: snap-063ad2d4338ce305f # <-- snapshot to import
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
@@ -113,7 +113,7 @@ spec:
     name: imported-prometheus-alertmanager-snapshot
     namespace: platform
   source:
-    snapshotHandle: snap-0fc386677b8472f24 # <-- snapshot to import
+    snapshotHandle: snap-0e4563f938190d5a2 # <-- snapshot to import
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
@@ -128,7 +128,7 @@ spec:
     name: imported-prometheus-server-snapshot
     namespace: platform
   source:
-    snapshotHandle: snap-059f291607b49453c # <-- snapshot to import
+    snapshotHandle: snap-0dee9227eaa89fc5c # <-- snapshot to import
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
