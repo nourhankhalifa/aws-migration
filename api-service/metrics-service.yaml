@@ -76,9 +76,9 @@ metadata:
     k8s-app: metrics-server
 spec:
   ports:
-  - port: 8443
+  - port: 443
+    targetPort: 8443
     protocol: TCP
-    targetPort: 443
   selector:
     k8s-app: metrics-server
 ---
