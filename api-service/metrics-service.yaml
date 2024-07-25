@@ -55,9 +55,9 @@ spec:
         args:
         - --cert-dir=/tmp
         - --kubelet-insecure-tls
-        - --secure-port=443
+        - --secure-port=8443
         ports:
-        - containerPort: 443
+        - containerPort: 8443
           name: https
         volumeMounts:
         - mountPath: /tmp
@@ -75,7 +75,7 @@ metadata:
     k8s-app: metrics-server
 spec:
   ports:
-  - port: 443
+  - port: 8443
     protocol: TCP
     targetPort: 443
   selector:
