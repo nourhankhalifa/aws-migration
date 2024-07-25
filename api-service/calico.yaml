@@ -1,0 +1,192 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: calico-node
+rules:
+- apiGroups: [""]
+  resources:
+  - pods
+  - nodes
+  - namespaces
+  - serviceaccounts
+  verbs:
+  - get
+- apiGroups: [""]
+  resources:
+  - endpoints
+  - services
+  verbs:
+  - watch
+  - list
+- apiGroups: [crd.projectcalico.org]
+  resources:
+  - clusterinformations
+  verbs:
+  - get
+- apiGroups: [crd.projectcalico.org]
+  resources:
+  - felixconfigurations
+  - bgppeers
+  - globalbgpconfigs
+  - globalfelixconfigs
+  verbs:
+  - list
+  - watch
+- apiGroups: [crd.projectcalico.org]
+  resources:
+  - ippools
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups: [crd.projectcalico.org]
+  resources:
+  - hostendpoints
+  - workloadendpoints
+  - bgpconfigurations
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups: [crd.projectcalico.org]
+  resources:
+  - networkpolicies
+  - globalnetworkpolicies
+  - networksets
+  - globalnetworksets
+  verbs:
+  - watch
+  - list
+- apiGroups: [crd.projectcalico.org]
+  resources:
+  - clusterinformations
+  verbs:
+  - list
+- apiGroups: [crd.projectcalico.org]
+  resources:
+  - kubecontrollersconfigurations
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: calico-node
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: calico-node
+subjects:
+- kind: ServiceAccount
+  name: calico-node
+  namespace: kube-system
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: calico-config
+  namespace: kube-system
+data:
+  typha_service_name: "none"
+  calico_backend: "bird"
+  veth_mtu: "1440"
+  cni_network_config: |-
+    {
+      "name": "k8s-pod-network",
+      "cniVersion": "0.3.1",
+      "plugins": [
+        {
+          "type": "calico",
+          "log_level": "info",
+          "datastore_type": "kubernetes",
+          "nodename": "__KUBERNETES_NODE_NAME__",
+          "mtu": __CNI_MTU__,
+          "ipam": {
+              "type": "calico-ipam"
+          },
+          "policy": {
+              "type": "k8s"
+          },
+          "kubernetes": {
+              "kubeconfig": "/etc/cni/net.d/__KUBECONFIG_FILENAME__"
+          }
+        },
+        {
+          "type": "portmap",
+          "snat": true,
+          "capabilities": {"portMappings": true}
+        }
+      ]
+    }
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: calico-node
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      k8s-app: calico-node
+  template:
+    metadata:
+      labels:
+        k8s-app: calico-node
+    spec:
+      serviceAccountName: calico-node
+      containers:
+      - name: calico-node
+        image: calico/node:v3.20.0
+        env:
+        - name: DATASTORE_TYPE
+          value: "kubernetes"
+        - name: WAIT_FOR_DATASTORE
+          value: "true"
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: CALICO_NETWORKING_BACKEND
+          value: "bird"
+        - name: CLUSTER_TYPE
+          value: "k8s,bgp"
+        - name: IP
+          value: "autodetect"
+        - name: CALICO_IPV4POOL_CIDR
+          value: "192.168.0.0/16"
+        - name: CALICO_DISABLE_FILE_LOGGING
+          value: "true"
+        - name: FELIX_DEFAULTENDPOINTTOHOSTACTION
+          value: "ACCEPT"
+        - name: FELIX_IPV6SUPPORT
+          value: "false"
+        - name: FELIX_LOGSEVERITYSCREEN
+          value: "info"
+        - name: FELIX_HEALTHENABLED
+          value: "true"
+        volumeMounts:
+        - mountPath: /lib/modules
+          name: lib-modules
+          readOnly: true
+        - mountPath: /run/xtables.lock
+          name: xtables-lock
+          readOnly: false
+        - mountPath: /var/run/calico
+          name: var-run-calico
+        - mountPath: /var/lib/calico
+          name: var-lib-calico
+      volumes:
+      - hostPath:
+          path: /lib/modules
+        name: lib-modules
+      - hostPath:
+          path: /run/xtables.lock
+        name: xtables-lock
+      - hostPath:
+          path: /var/run/calico
+        name: var-run-calico
+      - hostPath:
+          path: /var/lib/calico
+        name: var-lib-calico
