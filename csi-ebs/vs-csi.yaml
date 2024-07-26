@@ -1,12 +1,12 @@
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshot
 metadata:
-  name: imported-rabbitmq-snapshot-2
+  name: imported-rabbitmq-snapshot-3
   namespace: tappit-v2
 spec:
   volumeSnapshotClassName: ebs-csi-aws
   source:
-    volumeSnapshotContentName: imported-rabbitmq-snapshot-content-2
+    volumeSnapshotContentName: imported-rabbitmq-snapshot-content-3
 ---
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshot
