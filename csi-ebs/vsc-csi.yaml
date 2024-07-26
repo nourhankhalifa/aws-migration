@@ -1,14 +1,14 @@
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotContent
 metadata:
-  name: imported-rabbitmq-snapshot-content-2
+  name: imported-rabbitmq-snapshot-content-3
 spec:
   volumeSnapshotRef:
     kind: VolumeSnapshot
-    name: imported-rabbitmq-snapshot-2
+    name: imported-rabbitmq-snapshot-3
     namespace: tappit-v2
   source:
-    snapshotHandle: snap-03e4726f7284872b0 # <-- snapshot to import
+    snapshotHandle: snap-020aa5dc45d2fa1e4 # <-- snapshot to import
   driver: ebs.csi.aws.com
   deletionPolicy: Delete
   volumeSnapshotClassName: ebs-csi-aws
